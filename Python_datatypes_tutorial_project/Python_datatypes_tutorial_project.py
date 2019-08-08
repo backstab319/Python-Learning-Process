@@ -7,7 +7,7 @@ class Pydata:
             system("clear")
     
     def pause(self):
-        input("\nPress any key to continue.\n")
+        input("\nPress any key to continue..\n")
 
     def main_screen(self):
         while True:
