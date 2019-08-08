@@ -1,5 +1,6 @@
 from os import system, name
 class Pydata:
+    tup1 = tup2 = tup3 = ()
     def clrscr(self):
         if(name == "nt"):
             system("cls")
@@ -149,13 +150,64 @@ class Pydata:
     def tuple_screen(self):
         while True:
             self.clrscr()
-            val = input("Tuple Operations\n1.Perform tuple operations\n2.To go back to main menu\nAny other key to exit\n")
-            if val == "1":
-                print("Performed tuple operations!")
-            elif val == "2":
+            val = input("Tuple Operations\n1.Create\n2.Add\n3.Replicate\n4Delete\n5.To go back to main menu\nAny other key to exit\n")
+            if(val == "1"):
+                self.tupcreate()
+            elif(val == "2"):
+                self.tupadd()
+            elif(val == "3"):
+                self.tuprep()
+            elif(val == "4"):
+                self.tupdel()
+            elif val == "5":
                 self.main_screen()
             else:
                 exit()
+    
+    def tupcreate(self):
+        self.clrscr()
+        print("Creating tuple 1")
+        self.tup1 = self.tuple_creator()
+        print(self.tup1)
+        print("Creating tuple 2")
+        self.tup2 = self.tuple_creator()
+        print(self.tup2)
+        self.pause()
+
+    def tuple_creator(self):
+        li = []
+        while True:
+            inp = input("Enter elements into the tuple:\n")
+            if inp.ends_with == " ":
+                break
+            li+=inp
+        return li
+
+    def tupadd(self):
+        self.clrscr()
+        tup1 = ["sid",120,"Good"]
+        tup2 = ["dev",100,"Good"]
+        print("Adding tuple 1 and tuple 2")
+        tup3 = tup1 + tup2
+        print(tup3)
+        self.pause()
+
+    def tupdel(self):
+        self.clrscr()
+        tup1 = ["sid",120,"Good"]
+        tup2 = ["dev",100,"Good"]
+        print("Adding tuple 1 and tuple 2")
+        tup3 = tup1 + tup2
+        print("Deleting 3rd tuple")
+        del tup3
+        print(tup3)
+        self.pause()
+
+    def tuprep(self):
+        self.clrscr()
+        print("Replication of tuple")
+        
+        self.pause()
 
     def list_screen(self):
         while True:
