@@ -39,7 +39,6 @@ class Pydata:
                 self.main_screen()
             else:
                 exit()
-        
     def list_screen(self):
         self.clrscr()
         while True:
