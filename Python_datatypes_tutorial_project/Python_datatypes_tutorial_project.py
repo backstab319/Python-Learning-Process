@@ -150,7 +150,7 @@ class Pydata:
     def tuple_screen(self):
         while True:
             self.clrscr()
-            val = input("Tuple Operations\n1.Create\n2.Add\n3.Replicate\n4Delete\n5.To go back to main menu\nAny other key to exit\n")
+            val = input("Tuple Operations\n1.Create\n2.Add\n3.Replicate\n4.Delete\n5.To go back to main menu\nAny other key to exit\n")
             if(val == "1"):
                 self.tupcreate()
             elif(val == "2"):
@@ -176,37 +176,69 @@ class Pydata:
 
     def tuple_creator(self):
         li = []
+        print("Enter elements into the tuple:")
         while True:
-            inp = input("Enter elements into the tuple:\n")
-            if inp.ends_with == " ":
+            inp = input()
+            if inp.isspace():
                 break
-            li+=inp
-        return li
+            if inp.endswith(" "):
+                inp=inp.split()
+                li += inp
+                break
+            li.append(inp)
+        return tuple(li)
 
     def tupadd(self):
         self.clrscr()
-        tup1 = ["sid",120,"Good"]
-        tup2 = ["dev",100,"Good"]
+        if (self.tup1 or self.tup2) == ():
+            print("No previously created tuples. So making new tuples.\nCreating tuple 1")
+            self.tup1 = self.tuple_creator()
+            print("Creating tuple 2")
+            self.tup2 = self.tuple_creator()
+        self.tup3 = self.tup1 + self.tup2
         print("Adding tuple 1 and tuple 2")
-        tup3 = tup1 + tup2
-        print(tup3)
+        print(self.tup3)
         self.pause()
 
     def tupdel(self):
         self.clrscr()
-        tup1 = ["sid",120,"Good"]
-        tup2 = ["dev",100,"Good"]
-        print("Adding tuple 1 and tuple 2")
-        tup3 = tup1 + tup2
-        print("Deleting 3rd tuple")
-        del tup3
-        print(tup3)
+        
         self.pause()
+
+    def times(self):
+        times = int(input("How many times do you want to replicate the tuple?\n"))
+        return times
 
     def tuprep(self):
         self.clrscr()
         print("Replication of tuple")
-        
+        inp = input("Which tuple do you want to replicate?\n1.tuple1\n2.tuple2\n3.tuple3\n")
+        if(inp == "1"):
+            times = self.times()
+            if(self.tup1 == ()):
+                print("Tuple 1 is empty. Creating Tuple 1")
+                self.tup1 = self.tuple_creator()
+                print(self.tup1*times)
+            else:
+                print(self.tup1*times)
+        elif inp == "2":
+            times = self.times()
+            if self.tup2 == ():
+                print("Tuple 2 is empty. Creating Tuple 2")
+                self.tup2 = self.tup2*times
+                print(self.tup2*times)
+            else:
+                print(self.tup2*times)
+        elif inp == "3":
+            times = self.times()
+            if self.tup3 == ():
+                print("Tuple 3 is empty. Creating Tuple 3")
+                self.tup3 = self.tup3*times
+                print(self.tup3*times)
+            else:
+                print(self.tup3*times)
+        else:
+            print("Incorrect choice!")
         self.pause()
 
     def list_screen(self):
