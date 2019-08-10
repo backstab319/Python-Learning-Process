@@ -1,12 +1,13 @@
 from os import system, name
 class Pydata:
     tup1 = tup2 = tup3 = ()
+    code = int
     def clrscr(self):
         if(name == "nt"):
             system("cls")
         else:
             system("clear")
-    
+
     def pause(self):
         input("\nPress any key to continue..\n")
 
@@ -163,7 +164,7 @@ class Pydata:
                 self.main_screen()
             else:
                 exit()
-    
+
     def tupcreate(self):
         self.clrscr()
         print("Creating tuple 1")
@@ -200,9 +201,70 @@ class Pydata:
         print(self.tup3)
         self.pause()
 
+    def tup_show(self):
+        self.clrscr()
+        while True:
+            inp = input("Check tuples contain data or not\n1.tuple1\n2.tuple2\n3.tuple3\n4.Go back to deleting tuple\n")
+            if inp == "1":
+                print(self.tup_data(self.tup1))
+                self.pause()
+                self.clrscr()
+            elif inp == "2":
+                print(self.tup_data(self.tup2))
+                self.pause()
+                self.clrscr()
+            elif inp == "3":
+                print(self.tup_data(self.tup3))
+                self.pause()
+                self.clrscr()
+            elif inp == "4":
+                self.tupdel()
+            else:
+                print("Wrong choice!")
+        self.pause()
+
+    def tup_data(self,data):
+        if data == ():
+            self.code = 0
+            return "Tuple is empty!"
+        else:
+            self.code = 1
+            return "Tuple contains data!"
+
+    def tup_delete(self,var_no):
+        if var_no == "1":
+            self.tup_data(self.tup1)
+        elif var_no == "2":
+            self.tup_data(self.tup2)
+        else:
+            self.tup_data(self.tup3)
+        if self.code == 0:
+            print("Tuple"+str(var_no)+" deleted!")
+        else:
+            print("Tuple"+str(var_no)+" was already deleted!")
+
     def tupdel(self):
         self.clrscr()
-        
+        while True:
+            inp = input("Select a tuple to delete its data\n1.tuple1\n2.tuple2\n3.tuple3\n4.Check data in tuple\n5.Go back to tuple operations\n")
+            if inp == "1":
+                print(self.tup_delete(1))
+                self.pause()
+                self.clrscr()
+            elif inp == "2":
+                print(self.tup_delete(2))
+                self.pause()
+                self.clrscr()
+            elif inp == "3":
+                print(self.tup_delete(3))
+                self.pause()
+                self.clrscr()
+            elif inp == "4":
+                self.tup_show()
+            elif inp == "5":
+                self.tuple_screen()
+            else:
+                print("Invalid Input!")
         self.pause()
 
     def times(self):
