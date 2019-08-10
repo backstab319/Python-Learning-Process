@@ -232,31 +232,30 @@ class Pydata:
             return "Tuple contains data!"
 
     def tup_delete(self,var_no):
+        message1 = "Tuple deleted successfully!"
         if var_no == "1":
-            self.tup_data(self.tup1)
+            del self.tup1
         elif var_no == "2":
-            self.tup_data(self.tup2)
+            del self.tup2
         else:
-            self.tup_data(self.tup3)
-        if self.code == 0:
-            print("Tuple"+str(var_no)+" deleted!")
-        else:
-            print("Tuple"+str(var_no)+" was already deleted!")
+            self.tup3
+        return message1
 
     def tupdel(self):
+        message2 = "Tuple is already empty"
         self.clrscr()
         while True:
             inp = input("Select a tuple to delete its data\n1.tuple1\n2.tuple2\n3.tuple3\n4.Check data in tuple\n5.Go back to tuple operations\n")
             if inp == "1":
-                print(self.tup_delete(1))
+                print(message2 if self.tup1 == () else self.tup_delete("1"))
                 self.pause()
                 self.clrscr()
             elif inp == "2":
-                print(self.tup_delete(2))
+                print(message2 if self.tup2 == () else self.tup_delete("2"))
                 self.pause()
                 self.clrscr()
             elif inp == "3":
-                print(self.tup_delete(3))
+                print(message2 if self.tup3 == () else self.tup_delete("3"))
                 self.pause()
                 self.clrscr()
             elif inp == "4":
