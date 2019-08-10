@@ -1,6 +1,7 @@
 from os import system, name
 class Pydata:
     tup1 = tup2 = tup3 = ()
+    li1 = li2 = li3 = []
     code = int
     def clrscr(self):
         if(name == "nt"):
@@ -305,13 +306,105 @@ class Pydata:
     def list_screen(self):
         while True:
             self.clrscr()
-            val = input("List Operations\n1.Perform list operations\n2.To go back to main menu\nAny other key to exit\n")
+            val = input("List Operations\n1.Create\n2.Access\n3.Adding\n4.Replication\n5.Update\n6.Delete\n7.Go back\n8.Exit\n")
             if val == "1":
-                print("The code for lists is still being written")
+                self.li_create("3")
             elif val == "2":
+                self.li_access()
+            elif val == "3":
+                self.li_add()
+            elif val == "4":
+                self.li_rep()
+            elif val == "5":
+                self.li_update()
+            elif val == "6":
+                self.li_delete()
+            elif val == "7":
                 self.main_screen()
-            else:
+            elif val == "8":
                 exit()
+            else:
+                print("Incorrect Input!")
+
+    def li_creator(self):
+        self.clrscr()
+        li = []
+        print("Enter values into the list")
+        while True:
+            inp = input()
+            if inp.isspace():
+                break
+            if inp.endswith(" "):
+                inp=inp.split()
+                li += inp
+                break
+            li.append(inp)
+        return li
+
+    def li_create(self,li_no):
+        self.clrscr()
+        if li_no == "1" or li_no == "3":
+            if self.li1 == []:
+                self.li1 = self.li_creator()
+            else:
+                print("List already contains values")
+        if li_no == "2" or li_no == "3":
+            if self.li2 == []:
+                self.li2 = self.li_creator()
+            else:
+                print("List already contains values")
+        print("Lists created!")
+        self.pause()
+
+    def li_access(self):
+        self.clrscr()
+        list1 = self.li1 if self.li1 else "List 1 is empty"
+        list2 = self.li2 if self.li2 else "List 2 is empty"
+        print("The contents of list1 are\n",list1)
+        print("The contents of list2 are\n",list2)
+        self.pause()
+
+    def li_add(self):
+        self.clrscr()
+        if (self.li1 and self.li2) == []:
+            self.li_create("3")
+            self.clrscr()
+        self.li3 = self.li1 + self.li2
+        print(self.li3)
+        self.pause()
+
+    def li_replicator(self,li_no,times):
+        if li_no == "1":
+            if self.li1 == []: self.li_create("1")
+            return self.li1*int(times)
+        elif li_no == "2":
+            if self.li2 == []: self.li_create("2")
+            return self.li1*int(times)
+
+    def li_rep(self):
+        self.clrscr()
+        times = input("How many times to replicate the list ")
+        while True:
+            self.clrscr()
+            x = input("Which list do you want to replicate?\n1.List1\n2.List2\n3.Back\n")
+            if x == "1":
+                print(self.li_replicator("1",times))
+                break
+            elif x == "2":
+                print(self.li_replicator("2",times))
+                break
+            elif x == "3":
+                self.list_screen()
+                break
+            else:
+                print("Incorrect input!")
+        self.pause()
+
+    def li_update(self):
+        None
+
+    def li_delete(self):
+        None
 
     def dict_screen(self):
         while True:
