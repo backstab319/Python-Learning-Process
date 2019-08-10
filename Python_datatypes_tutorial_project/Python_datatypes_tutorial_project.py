@@ -151,7 +151,7 @@ class Pydata:
     def tuple_screen(self):
         while True:
             self.clrscr()
-            val = input("Tuple Operations\n1.Create\n2.Add\n3.Replicate\n4.Delete\n5.To go back to main menu\nAny other key to exit\n")
+            val = input("Tuple Operations\n1.Create\n2.Add\n3.Replicate\n4.Delete\n5.Max\n6.Min\n7.Len\n8.To go back to main menu\nAny other key to exit\n")
             if(val == "1"):
                 self.tupcreate()
             elif(val == "2"):
@@ -161,9 +161,47 @@ class Pydata:
             elif(val == "4"):
                 self.tupdel()
             elif val == "5":
+                self.tup_max_min("max")
+            elif val == "6":
+                self.tup_max_min("min")
+            elif val == "7":
+                self.tup_len()
+            elif val == "8":
                 self.main_screen()
             else:
                 exit()
+
+    def tup_create_prompt(self,tup_no):
+        if tup_no == "1":
+            if self.tup1 == ():
+                self.tup1 = self.tuple_creator()
+        elif tup_no == "2":
+            if self.tup2 == ():
+                self.tup2 = self.tuple_creator()
+        elif tup_no == "3":
+            if self.tup1 == ():
+                self.tup1 = self.tuple_creator()
+            if self.tup2 == ():
+                self.tup2 = self.tuple_creator()
+        else:
+            print("Fatal Error!")
+
+    def tup_max_min(self,op):
+        self.clrscr()
+        self.tup_create_prompt("1")
+        val = "The maximum value in the tuple is "+max(self.tup1) if op == "max" else "The minimum value in the tuple is "+min(self.tup1)
+        print(val)
+        self.tup_create_prompt("2")
+        val = "The maximum value in the tuple is "+max(self.tup2) if op == "max" else "The minimum value in the tuple is "+min(self.tup2)
+        print(val)
+        self.pause()
+
+    def tup_len(self):
+        self.clrscr()
+        self.tup_create_prompt("3")
+        print(len(self.tup1))
+        print(len(self.tup2))
+        self.pause()
 
     def tupcreate(self):
         self.clrscr()
