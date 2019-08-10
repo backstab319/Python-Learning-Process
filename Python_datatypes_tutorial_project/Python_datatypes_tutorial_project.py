@@ -307,7 +307,7 @@ class Pydata:
             self.clrscr()
             val = input("List Operations\n1.Perform list operations\n2.To go back to main menu\nAny other key to exit\n")
             if val == "1":
-                print("Performed list operations!")
+                print("The code for lists is still being written")
             elif val == "2":
                 self.main_screen()
             else:
