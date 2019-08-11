@@ -487,16 +487,54 @@ class Pydata:
         self.pause()
 
     def li_update_part(self,li_no):
-        self.clrscr()
+        if li_no == 1 and self.li1 == []: self.li_create("1")
+        if li_no == 2 and self.li2 == []: self.li_create("2")
         temp_list = self.li1 if li_no == 1 else self.li2
-        for x,y in enumerate(temp_list):
-            print(x,y)
+        while True:
+            self.clrscr()
+            for x,y in enumerate(temp_list):
+                z1, z2 = x, y
+                print(str(z1)+"."+str(z2))
+            inp = input("Select the index to update\n")
+            if int(inp) > z1:
+                print("Selected index out of bound!")
+                self.pause()
+            else:
+                inp_1 = input("Please enter the value to be updated to\n")
+                print("List Updated!")
+                break
+        temp_list[int(inp)] = inp_1
+        if li_no == 1: self.li1 = temp_list
+        else: self.li2 = temp_list
         self.pause()
 
+    def li_deleter(self,li_no):
+        li1_stat = "not" if li_no == 1 and self.li1 else "empty"
+        li2_stat = "not" if li_no == 2 and self.li2 else "empty"
+        li3_stat = "not" if li_no == 3 and self.li3 else "empty"
+        if li_no == 1 and li1_stat == "not": del self.li1
+        elif li_no == 1 and li1_stat == "empty": return "List1 already empty!"
+        elif li_no == 2 and li2_stat == "not": del self.li2
+        elif li_no == 2 and li2_stat == "empty": return "List2 already empty!"
+        elif li_no == 3 and li3_stat == "not": del self.li3
+        elif li_no == 3 and li3_stat == "empty": return "List3 already empty!"
+        else: return "Fatal error!"
+
     def li_delete(self):
-        self.clrscr()
-        print("Module under construction!")
-        self.pause()
+        while True:
+            self.clrscr()
+            x = input("Please select the list to be deleted\n1.List1\n2.List2\n3.List3\n4.Go back\n")
+            if x == "1":
+                print("Deleted!" if self.li_deleter(1) == None else self.li_deleter(1))
+            elif x == "2":
+                print("Deleted!" if self.li_deleter(2) == None else self.li_deleter(2))
+            elif x == "3":
+                print("Deleted!" if self.li_deleter(3) == None else self.li_deleter(3))
+            elif x == "4":
+                self.list_screen()
+            else:
+                print("Invalid Input!")
+            self.pause()
 
     def dict_screen(self):
         while True:
