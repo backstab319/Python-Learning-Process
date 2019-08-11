@@ -306,7 +306,7 @@ class Pydata:
     def list_screen(self):
         while True:
             self.clrscr()
-            val = input("List Operations\n1.Create\n2.Access\n3.Adding\n4.Replication\n5.Update\n6.Delete\n7.Go back\n8.Exit\n")
+            val = input("List Operations\n1.Create\n2.Access\n3.Adding\n4.Replication\n5.Update\n6.Delete\n7.Index\n8.Count\n9.Pop\n10.Insert\n11.Extend\n12.Remove\n13.Reverse\n14.Sort\n15.Go back\n16.Exit\n")
             if val == "1":
                 self.li_create("3")
             elif val == "2":
@@ -320,11 +320,67 @@ class Pydata:
             elif val == "6":
                 self.li_delete()
             elif val == "7":
-                self.main_screen()
+                self.li_index()
             elif val == "8":
+                self.li_count()
+            elif val == "9":
+                self.li_pop()
+            elif val == "10":
+                self.li_insert()
+            elif val == "11":
+                self.li_extend()
+            elif val == "12":
+                self.li_remove()
+            elif val == "13":
+                self.li_reverse()
+            elif val == "14":
+                self.li_sort()
+            elif val == "15":
+                self.main_screen()
+            elif val == "16":
                 exit()
             else:
                 print("Incorrect Input!")
+
+    def li_index(self):
+        self.clrscr()
+        print("Module under construction!")
+        self.pause()
+
+    def li_count(self):
+        self.clrscr()
+        print("Module under construction!")
+        self.pause()
+
+    def li_pop(self):
+        self.clrscr()
+        print("Module under construction!")
+        self.pause()
+
+    def li_insert(self):
+        self.clrscr()
+        print("Module under construction!")
+        self.pause()
+
+    def li_extend(self):
+        self.clrscr()
+        print("Module under construction!")
+        self.pause()
+
+    def li_remove(self):
+        self.clrscr()
+        print("Module under construction!")
+        self.pause()
+
+    def li_reverse(self):
+        self.clrscr()
+        print("Module under construction!")
+        self.pause()
+
+    def li_sort(self):
+        self.clrscr()
+        print("Module under construction!")
+        self.pause()
 
     def li_creator(self):
         self.clrscr()
@@ -401,10 +457,46 @@ class Pydata:
         self.pause()
 
     def li_update(self):
-        None
+        while True:
+            self.clrscr()
+            x = input("Select the list updation method\n1.Whole list\n2.A part of the list\n3.Go back\n")
+            if x == "1":
+                self.li_update_selector(1)
+            elif x == "2":
+                self.li_update_selector(2)
+            elif x == "3":
+                self.list_screen()
+            else:
+                print("Invalid Input!")
+        self.pause()
+
+    def li_update_selector(self,status):
+        while True:
+            self.clrscr()
+            x = input("Which list do you want to update?\n1.List 1\n2.List 2\n3.Go back\n")
+            if x == "1" and status == 1:
+                self.li_create("1")
+            elif x == "1" and status == 2:
+                self.li_update_part(1)
+            elif x == "2" and status == 1:
+                self.li_create("2")
+            elif x == "2" and status == 2:
+                self.li_update_part(2)
+            elif x == "3":
+                self.list_screen()
+        self.pause()
+
+    def li_update_part(self,li_no):
+        self.clrscr()
+        temp_list = self.li1 if li_no == 1 else self.li2
+        for x,y in enumerate(temp_list):
+            print(x,y)
+        self.pause()
 
     def li_delete(self):
-        None
+        self.clrscr()
+        print("Module under construction!")
+        self.pause()
 
     def dict_screen(self):
         while True:
