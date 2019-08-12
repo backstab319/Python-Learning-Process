@@ -4,6 +4,7 @@ class Pydata:
     code = int
 
     def future_enhancements(self):
+        self.clrscr()
         print("Future update contains lists and its functions")
         self.pause()
 
@@ -23,7 +24,7 @@ class Pydata:
         while True:
             self.clrscr()
             print(self.version_status())
-            val = input("Welcome to python! Please select the data type that you want to learn. \n1.Strings\n2.Tuples\n3.Lists\n4.Dictionary\nOr any other key to exit.\n")
+            val = input("Welcome to python! Please select the data type that you want to learn. \n1.Strings\n2.Tuples\n3.Lists\n4.Dictionary\n0.Future enhancements\nOr any other key to exit.\n")
             if val == "1":
                 self.string_screen()
             elif val == "2":
@@ -32,6 +33,8 @@ class Pydata:
                 self.list_screen()
             elif val == "4":
                 self.dict_screen()
+            elif val == "0":
+                self.future_enhancements()
             else:
                 exit()
 
