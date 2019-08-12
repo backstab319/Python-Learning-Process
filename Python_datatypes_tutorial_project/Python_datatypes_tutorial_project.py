@@ -1,6 +1,7 @@
 from os import system, name
 class Pydata:
     tup1 = tup2 = tup3 = ()
+    li1 = li2 = li3 = []
     code = int
 
     def future_enhancements(self):
@@ -355,13 +356,342 @@ class Pydata:
     def list_screen(self):
         while True:
             self.clrscr()
-            val = input("List Operations\n1.Perform list operations\n2.To go back to main menu\nAny other key to exit\n")
+            val = input("List Operations\n1.Create\n2.Access\n3.Adding\n4.Replication\n5.Update\n6.Delete\n7.Index\n8.Count\n9.Pop\n10.Insert\n11.Extend\n12.Remove\n13.Reverse\n14.Sort\n15.Go back\n16.Exit\n")
             if val == "1":
-                print("Performed list operations!")
+                self.li_create("3")
             elif val == "2":
+                self.li_access()
+            elif val == "3":
+                self.li_add()
+            elif val == "4":
+                self.li_rep()
+            elif val == "5":
+                self.li_update()
+            elif val == "6":
+                self.li_delete()
+            elif val == "7":
+                self.li_index()
+            elif val == "8":
+                self.li_count()
+            elif val == "9":
+                self.li_pop()
+            elif val == "10":
+                self.li_insert()
+            elif val == "11":
+                self.li_extend()
+            elif val == "12":
+                self.li_remove()
+            elif val == "13":
+                self.li_sort(1)
+            elif val == "14":
+                self.li_sort(0)
+            elif val == "15":
                 self.main_screen()
-            else:
+            elif val == "16":
                 exit()
+            else:
+                print("Incorrect Input!")
+
+    def li_index(self):
+        self.clrscr()
+        var = self.li_conditional_creator()
+        val = input("Enter the data for which index need to be found\n")
+        res = self.li_index_addr(var,val)
+        if res != "error": print("The data is at index ",res)
+        else: print("The data is not present")
+        self.pause()
+
+    def li_index_addr(self,op_list,val):
+        addr = op_list.index(val) if (val in op_list) else "error"
+        return addr
+
+    def li_conditional_creator(self):
+        for var in self.li1, self.li2, self.li3:
+            if var: break
+            else:
+                self.li_create("1")
+                self.clrscr()
+                var = self.li1
+                break
+        return var
+
+    def li_count(self):
+        self.clrscr()
+        var = self.li_conditional_creator()
+        val = input("Enter the data to count in list\n")
+        print("The given data occurs",var.count(val),"times in the list")
+        self.pause()
+
+    def li_pop(self):
+        self.clrscr()
+        op_list = self.li_conditional_creator()
+        while True:
+            for x,y in enumerate(op_list):
+                print(str(x)+"."+y)
+            inp = int(input("Please select the index of an element to pop it\n"))
+            if inp > x:
+                print("Out of index")
+            else:
+                self.li_check_delete(x+1,inp)
+                break
+        self.pause()
+
+    def li_check_delete(self,x,inp):
+        print("Deleted element",self.li1.pop(inp) if x == len(self.li1) else self.li2.pop(inp))
+
+    def li_insert(self):
+        self.clrscr()
+        op_list = self.li_conditional_creator()
+        while True:
+            for x,y in enumerate(op_list):
+                print(str(x)+"."+y)
+            inp1 = input("Enter the element to insert\n")
+            inp = int(input("Enter the index to insert the element at\n"))
+            if inp > x: print("Out of index")
+            else:
+                print(self.li1.insert(inp,inp1) if x+1 == len(self.li1) else self.li2.insert(inp1,inp1))
+                break
+        self.pause()
+
+    def li_extend(self):
+        self.clrscr()
+        if self.li1 == []: self.li_create("1")
+        if self.li2 == []: self.li_create("2")
+        local_li1 = self.li1
+        local_li2 = self.li2
+        self.li1.extend(local_li2)
+        self.li2.extend(local_li1)
+        print("Extending list 1 with list 2\n"+str(self.li1))
+        print("Extending list 2 with list 1\n"+str(self.li2))
+        self.pause()
+
+    def li_remove(self):
+        self.clrscr()
+        while True:
+            self.clrscr()
+            print("1.List 1\n2.List 2\n3.Go back")
+            list_no = input("Select a list\n")
+            if list_no == "1":
+                if self.li1 == []: self.li_create("1")
+                self.li_remover(1)
+            elif list_no == "2":
+                if self.li2 == []: self.li_create("2")
+                self.li_remover(2)
+            elif list_no == "3":
+                self.list_screen()
+            else:
+                print("Invalid Input!")
+                self.pause()
+        self.pause()
+
+    def li_remover(self,list_no):
+        if list_no == 1: op_list = self.li1
+        if list_no == 2: op_list = self.li2
+        while True:
+            self.clrscr()
+            for x,y in enumerate(op_list):
+                print(y)
+            print(str(x+1)+".Go back")
+            inp = input("Enter the element to remove\n")
+            if inp == str(x+1): self.list_screen()
+            if inp not in op_list:
+                print("Element not in the list")
+                self.pause()
+            else:
+                if list_no == 1: self.li1.remove(inp)
+                if list_no == 2: self.li2.remove(inp)
+        print(self.li1 if list_no == 1 else self.li2)
+
+    def li_sort(self,rev):
+        while True:
+            self.clrscr()
+            x = input("Select the list to sort\n1.List 1\n2.List 2\n3.List 3\n4.Go back\n")
+            if x == "1":
+                if self.li1 == []: self.li_create("1")
+                if rev == 1:
+                    self.li1.sort(reverse=True)
+                    print(self.li1)
+                else:
+                    self.li1.sort()
+                    print(self.li1)
+                break
+            elif x == "2":
+                if self.li2 == []: self.li_create("2")
+                if rev == 1:
+                    self.li2.sort(reverse=True)
+                    print(self.li2)
+                else:
+                    self.li2.sort()
+                    print(self.li2)
+                break
+            elif x == "3":
+                if self.li3 == []: self.li_create("3")
+                self.li_add()
+                if rev == 1:
+                    self.li3.sort(reverse=True)
+                    print(self.li3)
+                else:
+                    self.li3.sort()
+                    print(self.li3)
+                break
+            elif x == "4":
+                self.list_screen()
+            else:
+                print("Invalid Input!")
+        self.pause()
+
+    def li_creator(self):
+        self.clrscr()
+        li = []
+        print("Enter values into the list")
+        while True:
+            x = input()
+            if x.endswith("  "):
+                x = x.split()
+                for i in x:
+                    if i.isdigit(): i=int(i)
+                    li.append(i)
+            break
+        return li
+
+    def li_create(self,li_no):
+        self.clrscr()
+        if li_no == "1" or li_no == "3":
+            if self.li1 == []:
+                self.li1 = self.li_creator()
+            else:
+                print("List already contains values")
+        if li_no == "2" or li_no == "3":
+            if self.li2 == []:
+                self.li2 = self.li_creator()
+            else:
+                print("List already contains values")
+        print("Lists created!")
+        self.pause()
+
+    def li_access(self):
+        self.clrscr()
+        list1 = self.li1 if self.li1 else "List 1 is empty"
+        list2 = self.li2 if self.li2 else "List 2 is empty"
+        print("The contents of list1 are\n",list1)
+        print("The contents of list2 are\n",list2)
+        self.pause()
+
+    def li_add(self):
+        self.clrscr()
+        if (self.li1 and self.li2) == []:
+            self.li_create("3")
+            self.clrscr()
+        self.li3 = self.li1 + self.li2
+        print(self.li3)
+        self.pause()
+
+    def li_replicator(self,li_no,times):
+        if li_no == "1":
+            if self.li1 == []: self.li_create("1")
+            return self.li1*int(times)
+        elif li_no == "2":
+            if self.li2 == []: self.li_create("2")
+            return self.li1*int(times)
+
+    def li_rep(self):
+        self.clrscr()
+        times = input("How many times to replicate the list ")
+        while True:
+            self.clrscr()
+            x = input("Which list do you want to replicate?\n1.List1\n2.List2\n3.Back\n")
+            if x == "1":
+                print(self.li_replicator("1",times))
+                break
+            elif x == "2":
+                print(self.li_replicator("2",times))
+                break
+            elif x == "3":
+                self.list_screen()
+                break
+            else:
+                print("Incorrect input!")
+        self.pause()
+
+    def li_update(self):
+        while True:
+            self.clrscr()
+            x = input("Select the list updation method\n1.Whole list\n2.A part of the list\n3.Go back\n")
+            if x == "1":
+                self.li_update_selector(1)
+            elif x == "2":
+                self.li_update_selector(2)
+            elif x == "3":
+                self.list_screen()
+            else:
+                print("Invalid Input!")
+        self.pause()
+
+    def li_update_selector(self,status):
+        while True:
+            self.clrscr()
+            x = input("Which list do you want to update?\n1.List 1\n2.List 2\n3.Go back\n")
+            if x == "1" and status == 1:
+                self.li_create("1")
+            elif x == "1" and status == 2:
+                self.li_update_part(1)
+            elif x == "2" and status == 1:
+                self.li_create("2")
+            elif x == "2" and status == 2:
+                self.li_update_part(2)
+            elif x == "3":
+                self.list_screen()
+        self.pause()
+
+    def li_update_part(self,li_no):
+        if li_no == 1 and self.li1 == []: self.li_create("1")
+        if li_no == 2 and self.li2 == []: self.li_create("2")
+        temp_list = self.li1 if li_no == 1 else self.li2
+        while True:
+            self.clrscr()
+            for x,y in enumerate(temp_list):
+                z1, z2 = x, y
+                print(str(z1)+"."+str(z2))
+            inp = input("Select the index to update\n")
+            if int(inp) > z1:
+                print("Selected index out of bound!")
+                self.pause()
+            else:
+                inp_1 = input("Please enter the value to be updated to\n")
+                print("List Updated!")
+                break
+        temp_list[int(inp)] = inp_1
+        if li_no == 1: self.li1 = temp_list
+        else: self.li2 = temp_list
+        self.pause()
+
+    def li_deleter(self,li_no):
+        li1_stat = "not" if li_no == 1 and self.li1 else "empty"
+        li2_stat = "not" if li_no == 2 and self.li2 else "empty"
+        li3_stat = "not" if li_no == 3 and self.li3 else "empty"
+        if li_no == 1 and li1_stat == "not": del self.li1
+        elif li_no == 1 and li1_stat == "empty": return "List1 already empty!"
+        elif li_no == 2 and li2_stat == "not": del self.li2
+        elif li_no == 2 and li2_stat == "empty": return "List2 already empty!"
+        elif li_no == 3 and li3_stat == "not": del self.li3
+        elif li_no == 3 and li3_stat == "empty": return "List3 already empty!"
+        else: return "Fatal error!"
+
+    def li_delete(self):
+        while True:
+            self.clrscr()
+            x = input("Please select the list to be deleted\n1.List1\n2.List2\n3.List3\n4.Go back\n")
+            if x == "1":
+                print("Deleted!" if self.li_deleter(1) == None else self.li_deleter(1))
+            elif x == "2":
+                print("Deleted!" if self.li_deleter(2) == None else self.li_deleter(2))
+            elif x == "3":
+                print("Deleted!" if self.li_deleter(3) == None else self.li_deleter(3))
+            elif x == "4":
+                self.list_screen()
+            else:
+                print("Invalid Input!")
+            self.pause()
 
     def dict_screen(self):
         while True:
