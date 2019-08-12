@@ -405,22 +405,61 @@ class Pydata:
 
     def li_extend(self):
         self.clrscr()
-        print("Module under construction!")
+        if self.li1 == []: self.li_create("1")
+        if self.li2 == []: self.li_create("2")
+        local_li1 = self.li1
+        local_li2 = self.li2
+        self.li1.extend(local_li2)
+        self.li2.extend(local_li1)
+        print("Extending list 1 with list 2\n"+str(self.li1))
+        print("Extending list 2 with list 1\n"+str(self.li2))
         self.pause()
 
     def li_remove(self):
         self.clrscr()
-        print("Module under construction!")
+        while True:
+            self.clrscr()
+            print("1.List 1\n2.List 2\n3.Go back")
+            list_no = input("Select a list\n")
+            if list_no == "1":
+                if self.li1 == []: self.li_create("1")
+                self.li_remover(1)
+            elif list_no == "2":
+                if self.li2 == []: self.li_create("2")
+                self.li_remover(2)
+            elif list_no == "3":
+                self.list_screen()
+            else:
+                print("Invalid Input!")
+                self.pause()
+        self.pause()
+
+    def li_remover(self,list_no):
+        if list_no == 1: op_list = self.li1
+        if list_no == 2: op_list = self.li2
+        while True:
+            self.clrscr()
+            for x,y in enumerate(op_list):
+                print(y)
+            print(str(x+1)+".Go back")
+            inp = input("Enter the element to remove\n")
+            if inp == str(x+1): self.list_screen()
+            if inp not in op_list:
+                print("Element not in the list")
+                self.pause()
+            else:
+                if list_no == 1: self.li1.remove(inp)
+                if list_no == 2: self.li2.remove(inp)
+        print(self.li1 if list_no == 1 else self.li2)
+
+    def li_sort(self):
+        self.clrscr()
+        print("This module is being developed")
         self.pause()
 
     def li_reverse(self):
         self.clrscr()
-        print("Module under construction!")
-        self.pause()
-
-    def li_sort(self):
-        self.clrscr()
-        print("Module under construction!")
+        print("This module is being developed")
         self.pause()
 
     def li_creator(self):
