@@ -694,15 +694,9 @@ class Pydata:
             self.pause()
 
     def dict_screen(self):
-        while True:
-            self.clrscr()
-            val = input("Dictionary Operations\n1.Perform dictionary operations\n2.To go back to main menu\nAny other key to exit\n")
-            if val == "1":
-                print("Performed dictionary operations!")
-            elif val == "2":
-                self.main_screen()
-            else:
-                exit()
+        self.clrscr()
+        print("This module is currently being developed")
+        self.pause()
 
 curse = Pydata()
 curse.main_screen()
