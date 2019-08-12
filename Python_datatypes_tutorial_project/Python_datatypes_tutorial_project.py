@@ -2,6 +2,10 @@ from os import system, name
 class Pydata:
     tup1 = tup2 = tup3 = ()
     code = int
+
+    def version_status(self):
+        return "Version 1.0"
+
     def clrscr(self):
         if(name == "nt"):
             system("cls")
@@ -14,6 +18,7 @@ class Pydata:
     def main_screen(self):
         while True:
             self.clrscr()
+            print(self.version_status())
             val = input("Welcome to python! Please select the data type that you want to learn. \n1.Strings\n2.Tuples\n3.Lists\n4.Dictionary\nOr any other key to exit.\n")
             if val == "1":
                 self.string_screen()
