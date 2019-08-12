@@ -6,11 +6,11 @@ class Pydata:
 
     def future_enhancements(self):
         self.clrscr()
-        print("Future update contains lists and its functions")
+        print("Future update contains dictionary and its functions")
         self.pause()
 
     def version_status(self):
-        return "Version 1.0"
+        return "Version 1.1"
 
     def clrscr(self):
         if(name == "nt"):
