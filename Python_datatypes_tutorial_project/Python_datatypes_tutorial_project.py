@@ -344,22 +344,63 @@ class Pydata:
 
     def li_index(self):
         self.clrscr()
-        print("Module under construction!")
+        var = self.li_conditional_creator()
+        val = input("Enter the data for which index need to be found\n")
+        res = self.li_index_addr(var,val)
+        if res != "error": print("The data is at index ",res)
+        else: print("The data is not present")
         self.pause()
+
+    def li_index_addr(self,op_list,val):
+        addr = op_list.index(val) if (val in op_list) else "error"
+        return addr
+
+    def li_conditional_creator(self):
+        for var in self.li1, self.li2, self.li3:
+            if var: break
+            else:
+                self.li_create("1")
+                self.clrscr()
+                var = self.li1
+                break
+        return var
 
     def li_count(self):
         self.clrscr()
-        print("Module under construction!")
+        var = self.li_conditional_creator()
+        val = input("Enter the data to count in list\n")
+        print("The given data occurs",var.count(val),"times in the list")
         self.pause()
 
     def li_pop(self):
         self.clrscr()
-        print("Module under construction!")
+        op_list = self.li_conditional_creator()
+        while True:
+            for x,y in enumerate(op_list):
+                print(str(x)+"."+y)
+            inp = int(input("Please select the index of an element to pop it\n"))
+            if inp > x:
+                print("Out of index")
+            else:
+                self.li_check_delete(x+1,inp)
+                break
         self.pause()
+
+    def li_check_delete(self,x,inp):
+        print("Deleted element",self.li1.pop(inp) if x == len(self.li1) else self.li2.pop(inp))
 
     def li_insert(self):
         self.clrscr()
-        print("Module under construction!")
+        op_list = self.li_conditional_creator()
+        while True:
+            for x,y in enumerate(op_list):
+                print(str(x)+"."+y)
+            inp1 = input("Enter the element to insert\n")
+            inp = int(input("Enter the index to insert the element at\n"))
+            if inp > x: print("Out of index")
+            else:
+                print(self.li1.insert(inp,inp1) if x+1 == len(self.li1) else self.li2.insert(inp1,inp1))
+                break
         self.pause()
 
     def li_extend(self):
