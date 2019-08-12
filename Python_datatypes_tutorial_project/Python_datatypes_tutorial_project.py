@@ -3,6 +3,10 @@ class Pydata:
     tup1 = tup2 = tup3 = ()
     code = int
 
+    def future_enhancements(self):
+        print("Future update contains lists and its functions")
+        self.pause()
+
     def version_status(self):
         return "Version 1.0"
 
