@@ -332,9 +332,9 @@ class Pydata:
             elif val == "12":
                 self.li_remove()
             elif val == "13":
-                self.li_reverse()
+                self.li_sort(1)
             elif val == "14":
-                self.li_sort()
+                self.li_sort(0)
             elif val == "15":
                 self.main_screen()
             elif val == "16":
@@ -452,14 +452,42 @@ class Pydata:
                 if list_no == 2: self.li2.remove(inp)
         print(self.li1 if list_no == 1 else self.li2)
 
-    def li_sort(self):
-        self.clrscr()
-        print("This module is being developed")
-        self.pause()
-
-    def li_reverse(self):
-        self.clrscr()
-        print("This module is being developed")
+    def li_sort(self,rev):
+        while True:
+            self.clrscr()
+            x = input("Select the list to sort\n1.List 1\n2.List 2\n3.List 3\n4.Go back\n")
+            if x == "1":
+                if self.li1 == []: self.li_create("1")
+                if rev == 1:
+                    self.li1.sort(reverse=True)
+                    print(self.li1)
+                else:
+                    self.li1.sort()
+                    print(self.li1)
+                break
+            elif x == "2":
+                if self.li2 == []: self.li_create("2")
+                if rev == 1:
+                    self.li2.sort(reverse=True)
+                    print(self.li2)
+                else:
+                    self.li2.sort()
+                    print(self.li2)
+                break
+            elif x == "3":
+                if self.li3 == []: self.li_create("3")
+                self.li_add()
+                if rev == 1:
+                    self.li3.sort(reverse=True)
+                    print(self.li3)
+                else:
+                    self.li3.sort()
+                    print(self.li3)
+                break
+            elif x == "4":
+                self.list_screen()
+            else:
+                print("Invalid Input!")
         self.pause()
 
     def li_creator(self):
@@ -467,14 +495,13 @@ class Pydata:
         li = []
         print("Enter values into the list")
         while True:
-            inp = input()
-            if inp.isspace():
-                break
-            if inp.endswith(" "):
-                inp=inp.split()
-                li += inp
-                break
-            li.append(inp)
+            x = input()
+            if x.endswith("  "):
+                x = x.split()
+                for i in x:
+                    if i.isdigit(): i=int(i)
+                    li.append(i)
+            break
         return li
 
     def li_create(self,li_no):
