@@ -2,6 +2,7 @@ from os import system, name
 class Pydata:
     tup1 = tup2 = tup3 = ()
     li1 = li2 = li3 = []
+    dict1 = dict2 = dict3 = {}
     code = int
 
     def future_enhancements(self):
@@ -694,9 +695,67 @@ class Pydata:
             self.pause()
 
     def dict_screen(self):
-        self.clrscr()
-        print("This module is currently being developed")
+        while True:
+            self.clrscr()
+            x = input("Dictionary Operations\n1.Create\n2.Access\n3.Update\n4.Delete\n10.Go back\n")
+            if x == "1":
+                self.dict_create()
+            elif x == "2":
+                self.dict_access()
+            elif x == "3":
+                self.dict_update()
+            elif x == "4":
+                self.dict_del()
+            elif x == "10":
+                self.main_screen()
+            else:
+                print("Invalid Input!")
+                self.pause()
         self.pause()
+
+    def dict_create(self):
+        self.clrscr()
+        while True:
+            x = input("Select the method to create dictionary\n1.Custom keys\n2.Default keys\n3.Go back\n")
+            if x == "1":
+                self.dict_create_custom(2)
+            elif x == "2":
+                self.dict_create_def(2)
+            elif x == "3":
+                self.dict_screen()
+            else:
+                print("Invalid Input!")
+                self.pause()
+        self.pause()
+
+    def dict_create_custom(self,dict_no):
+        None
+
+    def dict_create_def(self,dict_no):
+        self.clrscr()
+        key = 0
+        while True:
+            key+=1
+            value = input("Enter a value for the key ")
+            if value.endswith("  "):
+                value = value.split()
+                for key,i in enumerate(value):
+                    temp = {key:i}
+                    self.dict1.update(temp)
+                break
+            temp = {key:value}
+            self.dict1.update(temp)
+        print(self.dict1)
+        self.pause()
+
+    def dict_access(self):
+        None
+
+    def dict_update(self):
+        None
+
+    def dict_del(self):
+        None
 
 curse = Pydata()
 curse.main_screen()
