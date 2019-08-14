@@ -2,6 +2,7 @@ from os import system, name
 class Pydata:
     tup1 = tup2 = tup3 = ()
     li1 = li2 = li3 = []
+    dict1 = dict2 = dict3 = {}
     code = int
 
     def future_enhancements(self):
@@ -696,9 +697,290 @@ class Pydata:
             self.pause()
 
     def dict_screen(self):
-        self.clrscr()
-        print("This module is currently being developed")
+        while True:
+            self.clrscr()
+            x = input("Dictionary Operations\n1.Create\n2.Access\n3.Update values\n4.Delete\n5.Keys\n6.Values\n7.Items\n8.Clear\n9.Copy\n10.Go back\n")
+            if x == "1":
+                self.dict_create()
+            elif x == "2":
+                self.dict_access()
+            elif x == "3":
+                self.dict_update()
+            elif x == "4":
+                self.dict_del()
+            elif x == "5":
+                self.dict_keys_values_items(0)
+            elif x == "6":
+                self.dict_keys_values_items(1)
+            elif x == "7":
+                self.dict_keys_values_items(2)
+            elif x == "8":
+                self.dict_clear()
+            elif x == "9":
+                self.dict_copy()
+            elif x == "10":
+                return 0
+            else:
+                print("Invalid Input!")
+                self.pause()
         self.pause()
+
+    def dict_check(self,dict_no):
+        self.clrscr()
+        if (dict_no == 1 or dict_no == 3) and self.dict1 == {}: self.dict1 = self.dict_create_def()
+        if (dict_no == 2 or dict_no == 3) and self.dict2 == {}: self.dict2 = self.dict_create_def()
+
+    def dict_keys_values_items(self,switcher):
+        while True:
+            self.clrscr()
+            val = "keys" if switcher == 0 else "values"
+            x = input("Select the dictionary to see the "+val+"\n1.Dictionary 1\n2.Dictionary 2\n3.Go back\n")
+            if x == "1":
+                self.dict_check(1)
+                if switcher == 0 or switcher == 1: print(self.dict1.keys() if switcher == 0 else self.dict1.values())
+                else: print(self.dict1.items())
+                break
+            elif x == "2":
+                self.dict_check(2)
+                if switcher == 0 or switcher == 1: print(self.dict2.keys() if switcher == 0 else self.dict2.values())
+                else: print(self.dict2.items())
+                break
+            elif x == "3": return 0
+            else:
+                print("Invalid Input!")
+                self.pause()
+        self.pause()
+
+    def dict_clear(self):
+        while True:
+            self.clrscr()
+            x = input("Select the dictionary to clear\n1.Dictionary 1\n2.Dictionary 2\n3.Go back\n")
+            if x == "1":
+                if self.dict1:
+                    self.dict1.clear()
+                    print("Dictionary 1 cleared!")
+                else:
+                    print("Dictionary 1 is already empty")
+            if x == "2":
+                if self.dict2:
+                    self.dict2.clear()
+                    print("Dictionary 2 cleared!")
+                else:
+                    print("Dictionar 2 is already empty")
+            if x == "3": return 0
+            self.pause()
+
+    def dict_copy(self):
+        while True:
+            self.clrscr()
+            x = input("Select the appropirate option\n1.Copy dictionary 1 to 2\n2.Copy dictionary 2 to 1\n3.Go back\n")
+            if x == "1":
+                self.dict_check(1)
+                self.dict2 = self.dict1.copy()
+                print("Dictionary 1:",self.dict2)
+                break
+            elif x == "2":
+                self.dict_check(2)
+                self.dict1 = self.dict2.copy()
+                print("Dictionary 2:",self.dict1)
+                break
+            elif x == "3": return 0
+            else:
+                print("Invalid Input!")
+                self.pause()
+        self.pause()
+
+    def dict_create(self):
+        while True:
+            self.clrscr()
+            x = input("Select the method to create dictionary\n1.Custom keys\n2.Default keys\n3.Go back\n")
+            if x == "1":
+                self.dict_creator(1,2)
+                break
+            elif x == "2":
+                self.dict_creator(2,2)
+                break
+            elif x == "3":
+                return 0
+            else:
+                print("Invalid Input!")
+                self.pause()
+        self.pause()
+
+    def dict_create_custom(self):
+        self.clrscr()
+        temp_dict = {}
+        while True:
+            value = input("Enter key followed by its value ")
+            if value.endswith("  "):
+                value = value.split()
+                for i,j in enumerate(value):
+                    if i%2 == 0:
+                        key = j
+                        continue
+                    temp = {key:j}
+                    temp_dict.update(temp)
+                break
+            temp = {key:value}
+            temp_dict.update(temp)
+        self.pause()
+        return temp_dict
+
+    def dict_create_def(self):
+        self.clrscr()
+        key, temp_dict = 0, {}
+        while True:
+            key+=1
+            value = input("Enter a value for the key ")
+            if value.endswith("  "):
+                value = value.split()
+                for key,i in enumerate(value):
+                    temp = {key:i}
+                    temp_dict.update(temp)
+                break
+            temp = {key:value}
+            temp_dict.update(temp)
+        return temp_dict
+
+    def dict_creator(self,dict_type,dict_no):
+        if dict_no == 1: self.dict1 = self.dict_create_custom() if dict_type == 1 else self.dict_create_def()
+        if dict_no == 2:
+            self.dict1 = self.dict_create_custom() if dict_type == 1 else self.dict_create_def()
+            self.dict2 = self.dict_create_custom() if dict_type == 1 else self.dict_create_def()
+
+    def dict_access(self):
+        while True:
+            self.clrscr()
+            x = input("Select the dictionary to access\n1.Dictionary 1\n2.Dictionary 2\n3.Go back\n")
+            if x == "1":
+                print(self.dict1 if self.dict1 else "Dictionary 1 is empty")
+                self.pause()
+            elif x == "2":
+                print(self.dict2 if self.dict2 else "Dictionary 2 is empty")
+                self.pause()
+            elif x == "3":
+                return 0
+            else:
+                print("Invalid input!")
+                self.pause()
+        self.pause()
+
+    def dict_update(self):
+        while True:
+            self.clrscr()
+            x = input("select the dictionary that you want to update\n1.Dictionary 1\n2.Dictionary 2\n3.Go back\n")
+            if x == "1":
+                print(self.dict_updater(1))
+                self.pause()
+            elif x == "2":
+                print(self.dict_updater(2))
+                self.pause()
+            elif x == "3":
+                self.dict_screen()
+            else:
+                print("Invalid Input!")
+                self.pause()
+        self.pause()
+
+    def dict_updater(self,dict_no):
+        temp_dict = self.dict1 if dict_no == 1 else self.dict2
+        if temp_dict == {}: return "Empty dictionary!"
+        while True:
+            self.dict_traverse(temp_dict)
+            x = input("exit.Go back\nSelect the key to update\n")
+            if x == "exit":
+                break
+            if x.isdigit(): x=int(x)
+            if x in temp_dict.keys():
+                val = input("Enter new value for the key\n")
+                if val.isdigit(): val = int(val)
+                temp_dict.update({x:val})
+                continue
+            else:
+                print("Invalid key!")
+                self.pause()
+        if dict_no == 1: self.dict1 = temp_dict
+        else: self.dict2 = temp_dict
+        return "Dictionary Updated!"
+
+    def dict_traverse(self,temp_dict):
+        self.clrscr()
+        for i,j in temp_dict.items():
+            print(str(i)+"."+str(j))
+
+    def dict_del(self):
+        while True:
+            self.clrscr()
+            x = input("Select deletion method\n1.Delete part\n2.Delete whole\n3.Go back\n")
+            if x == "1":
+                self.dict_del_part()
+            elif x == "2":
+                self.dict_del_whole()
+            elif x == "3":
+                return 0
+            else:
+                print("Invalid Input!")
+                self.pause()
+
+    def dict_del_part(self):
+        self.clrscr()
+        temp_dict = val = self.dict_del_selector()
+        if val == 0: return None
+        while True:
+            self.dict_traverse(temp_dict)
+            x = input("back.Go back\nSelect the key to delete\n")
+            if x.isdigit(): x = int(x)
+            if x == "back": self.dict_screen()
+            if x in temp_dict:
+                temp_dict.pop(x)
+                print("Item removed!")
+                self.pause()
+            else:
+                print("Item not in dictionary!")
+                self.pause()
+        if val == self.dict1: self.dict1 = temp_dict
+        else: self.dict1 = temp_dict
+        self.pause()
+
+    def dict_del_whole(self):
+        while True:
+            val = self.dict_del_selector()
+            if val == 0: return None
+            if val == self.dict1:
+                self.dict1.clear()
+                print("Dictionary 1 deleted!")
+                break
+            elif val == self.dict2:
+                self.dict2.clear()
+                print("Dictionary 2 deleted!")
+                break
+            elif val == "3": return 0
+            else: print("Dictionary already empty!")
+        self.pause()
+
+    def dict_del_selector(self):
+        while True:
+            self.clrscr()
+            x = input("Select the dictionary to delete\n1.Dictionary 1\n2.Dictionary 2\n3.Go back\n")
+            if x == "1":
+                if self.dict1 == {}:
+                    self.clrscr()
+                    print("Empty dictionary!")
+                    self.pause()
+                    return 0
+                return self.dict1
+            elif x == "2":
+                if self.dict2 == {}:
+                    self.clrscr()
+                    print("Empty dictionary!")
+                    self.pause()
+                    return 0
+                return self.dict2
+            elif x == "3":
+                return 0
+            else:
+                print("Invalid Input!")
+                self.pause()
 
     def sets_screen(self):
         self.clrscr()
