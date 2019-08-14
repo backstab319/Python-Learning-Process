@@ -697,7 +697,7 @@ class Pydata:
     def dict_screen(self):
         while True:
             self.clrscr()
-            x = input("Dictionary Operations\n1.Create\n2.Access\n3.Update values\n4.Delete\n5.Keys\n6.Values\n7.Items\n8.Update\n9.Clear\n10.Copy\n11.Go back\n")
+            x = input("Dictionary Operations\n1.Create\n2.Access\n3.Update values\n4.Delete\n5.Keys\n6.Values\n7.Items\n8.Clear\n9.Copy\n10.Go back\n")
             if x == "1":
                 self.dict_create()
             elif x == "2":
@@ -707,18 +707,16 @@ class Pydata:
             elif x == "4":
                 self.dict_del()
             elif x == "5":
-                self.dict_keys()
+                self.dict_keys_values_items(0)
             elif x == "6":
-                self.dict_values()
+                self.dict_keys_values_items(1)
             elif x == "7":
-                self.dict_items()
+                self.dict_keys_values_items(2)
             elif x == "8":
-                self.dict_update_ex()
-            elif x == "9":
                 self.dict_clear()
-            elif x == "10":
+            elif x == "9":
                 self.dict_copy()
-            elif x == "11":
+            elif x == "10":
                 return 0
             else:
                 print("Invalid Input!")
@@ -730,17 +728,20 @@ class Pydata:
         if (dict_no == 1 or dict_no == 3) and self.dict1 == {}: self.dict1 = self.dict_create_def()
         if (dict_no == 2 or dict_no == 3) and self.dict2 == {}: self.dict2 = self.dict_create_def()
 
-    def dict_keys(self):
+    def dict_keys_values_items(self,switcher):
         while True:
             self.clrscr()
-            x = input("Select the dictionary to see the keys\n1.Dictionary 1\n2.Dictionary 2\n3.Go back\n")
+            val = "keys" if switcher == 0 else "values"
+            x = input("Select the dictionary to see the "+val+"\n1.Dictionary 1\n2.Dictionary 2\n3.Go back\n")
             if x == "1":
                 self.dict_check(1)
-                print(self.dict1.keys())
+                if switcher == 0 or switcher == 1: print(self.dict1.keys() if switcher == 0 else self.dict1.values())
+                else: print(self.dict1.items())
                 break
             elif x == "2":
                 self.dict_check(2)
-                print(self.dict2.keys())
+                if switcher == 0 or switcher == 1: print(self.dict2.keys() if switcher == 0 else self.dict2.values())
+                else: print(self.dict2.items())
                 break
             elif x == "3": return 0
             else:
@@ -748,20 +749,44 @@ class Pydata:
                 self.pause()
         self.pause()
 
-    def dict_values(self):
-        None
-
-    def dict_items(self):
-        None
-
-    def dict_update_ex(self):
-        None
-
     def dict_clear(self):
-        None
+        while True:
+            self.clrscr()
+            x = input("Select the dictionary to clear\n1.Dictionary 1\n2.Dictionary 2\n3.Go back\n")
+            if x == "1":
+                if self.dict1:
+                    self.dict1.clear()
+                    print("Dictionary 1 cleared!")
+                else:
+                    print("Dictionary 1 is already empty")
+            if x == "2":
+                if self.dict2:
+                    self.dict2.clear()
+                    print("Dictionary 2 cleared!")
+                else:
+                    print("Dictionar 2 is already empty")
+            if x == "3": return 0
+            self.pause()
 
     def dict_copy(self):
-        None
+        while True:
+            self.clrscr()
+            x = input("Select the appropirate option\n1.Copy dictionary 1 to 2\n2.Copy dictionary 2 to 1\n3.Go back\n")
+            if x == "1":
+                self.dict_check(1)
+                self.dict2 = self.dict1.copy()
+                print("Dictionary 1:",self.dict2)
+                break
+            elif x == "2":
+                self.dict_check(2)
+                self.dict1 = self.dict2.copy()
+                print("Dictionary 2:",self.dict1)
+                break
+            elif x == "3": return 0
+            else:
+                print("Invalid Input!")
+                self.pause()
+        self.pause()
 
     def dict_create(self):
         while True:
