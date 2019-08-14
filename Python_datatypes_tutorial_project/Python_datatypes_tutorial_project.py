@@ -697,7 +697,7 @@ class Pydata:
     def dict_screen(self):
         while True:
             self.clrscr()
-            x = input("Dictionary Operations\n1.Create\n2.Access\n3.Update\n4.Delete\n10.Go back\n")
+            x = input("Dictionary Operations\n1.Create\n2.Access\n3.Update values\n4.Delete\n5.Keys\n6.Values\n7.Items\n8.Update\n9.Clear\n10.Copy\n11.Go back\n")
             if x == "1":
                 self.dict_create()
             elif x == "2":
@@ -706,12 +706,62 @@ class Pydata:
                 self.dict_update()
             elif x == "4":
                 self.dict_del()
+            elif x == "5":
+                self.dict_keys()
+            elif x == "6":
+                self.dict_values()
+            elif x == "7":
+                self.dict_items()
+            elif x == "8":
+                self.dict_update_ex()
+            elif x == "9":
+                self.dict_clear()
             elif x == "10":
-                self.main_screen()
+                self.dict_copy()
+            elif x == "11":
+                return 0
             else:
                 print("Invalid Input!")
                 self.pause()
         self.pause()
+
+    def dict_check(self,dict_no):
+        self.clrscr()
+        if (dict_no == 1 or dict_no == 3) and self.dict1 == {}: self.dict1 = self.dict_create_def()
+        if (dict_no == 2 or dict_no == 3) and self.dict2 == {}: self.dict2 = self.dict_create_def()
+
+    def dict_keys(self):
+        while True:
+            self.clrscr()
+            x = input("Select the dictionary to see the keys\n1.Dictionary 1\n2.Dictionary 2\n3.Go back\n")
+            if x == "1":
+                self.dict_check(1)
+                print(self.dict1.keys())
+                break
+            elif x == "2":
+                self.dict_check(2)
+                print(self.dict2.keys())
+                break
+            elif x == "3": return 0
+            else:
+                print("Invalid Input!")
+                self.pause()
+        self.pause()
+
+    def dict_values(self):
+        None
+
+    def dict_items(self):
+        None
+
+    def dict_update_ex(self):
+        None
+
+    def dict_clear(self):
+        None
+
+    def dict_copy(self):
+        None
 
     def dict_create(self):
         while True:
@@ -719,10 +769,12 @@ class Pydata:
             x = input("Select the method to create dictionary\n1.Custom keys\n2.Default keys\n3.Go back\n")
             if x == "1":
                 self.dict_creator(1,2)
+                break
             elif x == "2":
                 self.dict_creator(2,2)
+                break
             elif x == "3":
-                self.dict_screen()
+                return 0
             else:
                 print("Invalid Input!")
                 self.pause()
@@ -761,7 +813,6 @@ class Pydata:
                 break
             temp = {key:value}
             temp_dict.update(temp)
-        self.pause()
         return temp_dict
 
     def dict_creator(self,dict_type,dict_no):
@@ -781,7 +832,7 @@ class Pydata:
                 print(self.dict2 if self.dict2 else "Dictionary 2 is empty")
                 self.pause()
             elif x == "3":
-                self.dict_screen()
+                return 0
             else:
                 print("Invalid input!")
                 self.pause()
@@ -831,7 +882,78 @@ class Pydata:
             print(str(i)+"."+str(j))
 
     def dict_del(self):
-        None
+        while True:
+            self.clrscr()
+            x = input("Select deletion method\n1.Delete part\n2.Delete whole\n3.Go back\n")
+            if x == "1":
+                self.dict_del_part()
+            elif x == "2":
+                self.dict_del_whole()
+            elif x == "3":
+                return 0
+            else:
+                print("Invalid Input!")
+                self.pause()
+
+    def dict_del_part(self):
+        self.clrscr()
+        temp_dict = val = self.dict_del_selector()
+        if val == 0: return None
+        while True:
+            self.dict_traverse(temp_dict)
+            x = input("back.Go back\nSelect the key to delete\n")
+            if x.isdigit(): x = int(x)
+            if x == "back": self.dict_screen()
+            if x in temp_dict:
+                temp_dict.pop(x)
+                print("Item removed!")
+                self.pause()
+            else:
+                print("Item not in dictionary!")
+                self.pause()
+        if val == self.dict1: self.dict1 = temp_dict
+        else: self.dict1 = temp_dict
+        self.pause()
+
+    def dict_del_whole(self):
+        while True:
+            val = self.dict_del_selector()
+            if val == 0: return None
+            if val == self.dict1:
+                self.dict1.clear()
+                print("Dictionary 1 deleted!")
+                break
+            elif val == self.dict2:
+                self.dict2.clear()
+                print("Dictionary 2 deleted!")
+                break
+            elif val == "3": return 0
+            else: print("Dictionary already empty!")
+        self.pause()
+
+    def dict_del_selector(self):
+        while True:
+            self.clrscr()
+            x = input("Select the dictionary to delete\n1.Dictionary 1\n2.Dictionary 2\n3.Go back\n")
+            if x == "1":
+                if self.dict1 == {}:
+                    self.clrscr()
+                    print("Empty dictionary!")
+                    self.pause()
+                    return 0
+                return self.dict1
+            elif x == "2":
+                if self.dict2 == {}:
+                    self.clrscr()
+                    print("Empty dictionary!")
+                    self.pause()
+                    return 0
+                return self.dict2
+            elif x == "3":
+                return 0
+            else:
+                print("Invalid Input!")
+                self.pause()
 
 curse = Pydata()
 curse.main_screen()
