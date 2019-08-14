@@ -26,7 +26,7 @@ class Pydata:
         while True:
             self.clrscr()
             print(self.version_status())
-            val = input("Welcome to python! Please select the data type that you want to learn. \n1.Strings\n2.Tuples\n3.Lists\n4.Dictionary\n0.Future enhancements\nOr any other key to exit.\n")
+            val = input("Welcome to python! Please select the data type that you want to learn.\nAttention!: Use double space in the end while crreating string, list, dictionary, tuple etc to stop creating.\n1.Strings\n2.Tuples\n3.Lists\n4.Dictionary\n5.Sets\n0.Future enhancements\nOr any other key to exit.\n")
             if val == "1":
                 self.string_screen()
             elif val == "2":
@@ -35,6 +35,8 @@ class Pydata:
                 self.list_screen()
             elif val == "4":
                 self.dict_screen()
+            elif val == "5":
+                self.sets_screen()
             elif val == "0":
                 self.future_enhancements()
             else:
@@ -979,6 +981,11 @@ class Pydata:
             else:
                 print("Invalid Input!")
                 self.pause()
+
+    def sets_screen(self):
+        self.clrscr()
+        print("This module is currently being developed")
+        self.pause()
 
 curse = Pydata()
 curse.main_screen()
