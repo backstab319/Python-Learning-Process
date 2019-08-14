@@ -714,13 +714,13 @@ class Pydata:
         self.pause()
 
     def dict_create(self):
-        self.clrscr()
         while True:
+            self.clrscr()
             x = input("Select the method to create dictionary\n1.Custom keys\n2.Default keys\n3.Go back\n")
             if x == "1":
-                self.dict_create_custom(2)
+                self.dict_creator(1,2)
             elif x == "2":
-                self.dict_create_def(2)
+                self.dict_creator(2,2)
             elif x == "3":
                 self.dict_screen()
             else:
@@ -728,12 +728,28 @@ class Pydata:
                 self.pause()
         self.pause()
 
-    def dict_create_custom(self,dict_no):
-        None
-
-    def dict_create_def(self,dict_no):
+    def dict_create_custom(self):
         self.clrscr()
-        key = 0
+        temp_dict = {}
+        while True:
+            value = input("Enter key followed by its value ")
+            if value.endswith("  "):
+                value = value.split()
+                for i,j in enumerate(value):
+                    if i%2 == 0:
+                        key = j
+                        continue
+                    temp = {key:j}
+                    temp_dict.update(temp)
+                break
+            temp = {key:value}
+            temp_dict.update(temp)
+        self.pause()
+        return temp_dict
+
+    def dict_create_def(self):
+        self.clrscr()
+        key, temp_dict = 0, {}
         while True:
             key+=1
             value = input("Enter a value for the key ")
@@ -741,18 +757,78 @@ class Pydata:
                 value = value.split()
                 for key,i in enumerate(value):
                     temp = {key:i}
-                    self.dict1.update(temp)
+                    temp_dict.update(temp)
                 break
             temp = {key:value}
-            self.dict1.update(temp)
-        print(self.dict1)
+            temp_dict.update(temp)
         self.pause()
+        return temp_dict
+
+    def dict_creator(self,dict_type,dict_no):
+        if dict_no == 1: self.dict1 = self.dict_create_custom() if dict_type == 1 else self.dict_create_def()
+        if dict_no == 2:
+            self.dict1 = self.dict_create_custom() if dict_type == 1 else self.dict_create_def()
+            self.dict2 = self.dict_create_custom() if dict_type == 1 else self.dict_create_def()
 
     def dict_access(self):
-        None
+        while True:
+            self.clrscr()
+            x = input("Select the dictionary to access\n1.Dictionary 1\n2.Dictionary 2\n3.Go back\n")
+            if x == "1":
+                print(self.dict1 if self.dict1 else "Dictionary 1 is empty")
+                self.pause()
+            elif x == "2":
+                print(self.dict2 if self.dict2 else "Dictionary 2 is empty")
+                self.pause()
+            elif x == "3":
+                self.dict_screen()
+            else:
+                print("Invalid input!")
+                self.pause()
+        self.pause()
 
     def dict_update(self):
-        None
+        while True:
+            self.clrscr()
+            x = input("select the dictionary that you want to update\n1.Dictionary 1\n2.Dictionary 2\n3.Go back\n")
+            if x == "1":
+                print(self.dict_updater(1))
+                self.pause()
+            elif x == "2":
+                print(self.dict_updater(2))
+                self.pause()
+            elif x == "3":
+                self.dict_screen()
+            else:
+                print("Invalid Input!")
+                self.pause()
+        self.pause()
+
+    def dict_updater(self,dict_no):
+        temp_dict = self.dict1 if dict_no == 1 else self.dict2
+        if temp_dict == {}: return "Empty dictionary!"
+        while True:
+            self.dict_traverse(temp_dict)
+            x = input("exit.Go back\nSelect the key to update\n")
+            if x == "exit":
+                break
+            if x.isdigit(): x=int(x)
+            if x in temp_dict.keys():
+                val = input("Enter new value for the key\n")
+                if val.isdigit(): val = int(val)
+                temp_dict.update({x:val})
+                continue
+            else:
+                print("Invalid key!")
+                self.pause()
+        if dict_no == 1: self.dict1 = temp_dict
+        else: self.dict2 = temp_dict
+        return "Dictionary Updated!"
+
+    def dict_traverse(self,temp_dict):
+        self.clrscr()
+        for i,j in temp_dict.items():
+            print(str(i)+"."+str(j))
 
     def dict_del(self):
         None
