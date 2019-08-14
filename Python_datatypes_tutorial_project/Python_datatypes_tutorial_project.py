@@ -7,11 +7,11 @@ class Pydata:
 
     def future_enhancements(self):
         self.clrscr()
-        print("Future update contains dictionary and its functions")
+        print("Future update contains sets and its functions")
         self.pause()
 
     def version_status(self):
-        return "Version 1.1"
+        return "Version 1.2"
 
     def clrscr(self):
         if(name == "nt"):
@@ -26,7 +26,7 @@ class Pydata:
         while True:
             self.clrscr()
             print(self.version_status())
-            val = input("Welcome to python! Please select the data type that you want to learn.\nAttention!: Use double space in the end while crreating string, list, dictionary, tuple etc to stop creating.\n1.Strings\n2.Tuples\n3.Lists\n4.Dictionary\n5.Sets\n0.Future enhancements\nOr any other key to exit.\n")
+            val = input("Welcome to python! Please select the data type that you want to learn.\n\nAttention!: Use double space in the end while creating string, list, dictionary, tuple etc to stop creating.\n\n1.Strings\n2.Tuples\n3.Lists\n4.Dictionary\n5.Sets\n0.Future enhancements\nOr any other key to exit.\n")
             if val == "1":
                 self.string_screen()
             elif val == "2":
