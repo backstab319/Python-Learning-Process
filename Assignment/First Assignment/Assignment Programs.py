@@ -38,8 +38,10 @@ class Assignment:
 
     def count_str(self):
         self.clrscr()
-        x = input("Please enter a string\n")
-        print("The string contains",len(x.split()),"words.")
+        x,li = input("Please enter a string\n"),[]
+        for i in x: li.append(i)
+        for i in li:
+            print(li.count(i))
         self.pause()
 
     def rev_str(self):
@@ -52,20 +54,20 @@ class Assignment:
     def str_list(self):
         self.clrscr()
         x,list1 = input("Please enter a string to convert into list\n"),[]
-        list1 = x.split()
+        for i in x: list1.append(i)
         print(list1)
         self.pause()
 
     def list_str(self):
         self.clrscr()
-        x,str1 = input("Please enter a list to convert into string\n").split(),""
+        x,str1 = input("Please enter a list to convert into string\n"),""
         for i in x: str1+=i+" "
         print(str1)
         self.pause()
 
     def digandletters_str(self):
         self.clrscr()
-        x,digno = input("Enter a string which contains digits and words\n").split(),0
+        x,digno = input("Enter a string which contains digits and words\n"),0
         for i in x: digno= digno+1 if i.isdigit() else digno+0
         print("Number of digits",digno,"and number of words",len(x)-digno)
         self.pause()
@@ -96,13 +98,12 @@ class Assignment:
             fact = fact * num
             num-=1
         print("Using while loop ",fact)
-        print("Prime numbers")
         self.pause()
 
     def str_length(self):
         self.clrscr()
         inp = input("Find the length of a string\nEnter a string ")
-        for i in enumerate(inp,1): x = i
+        for i in inp: x = i
         print("Length of the string is",x)
         self.pause()
 
