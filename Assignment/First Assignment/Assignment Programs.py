@@ -7,7 +7,7 @@ class Assignment:
 
     def main_screen(self):
         self.clrscr()
-        x = input("Demonstration of assignment programs\n1.Length of string\n2.Count of string\n3.Reverse of string\n4.Convert string to list\n5.Convert list to string\n6.Number of digits or letter in string\n7.Pattern using nested for loop\n8.Odd and even number from a given series\n9.Prime\n10.Factorial\n11.Exit\n")
+        x = input("Demonstration of assignment programs\n1.Length of string\n2.Count of string\n3.Reverse of string\n4.Convert string to list\n5.Convert list to string\n6.Number of digits or letter in string\n7.Pattern using nested for loop\n8.Odd and even number from a given series\n9.Prime\n10.Factorial\n11.Length of a string using while\n12.Exit\n")
         if x == "1":
             self.str_length()
         elif x == "2":
@@ -29,12 +29,22 @@ class Assignment:
         elif x == "10":
             self.factorial()
         elif x == "11":
+            self.str_length_while()
+        elif x == "12":
             self.clrscr()
             exit()
         else:
             print("Invalid Input!")
             self.pause()
         self.main_screen()
+
+    def str_length_while(self):
+        self.clrscr()
+        x,i = input("Please enter a string\n"),0
+        while x[i] != None:
+            i+=1
+        print("The length of string is",i)
+        self.pause()
 
     def count_str(self):
         self.clrscr()
