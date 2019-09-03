@@ -26,7 +26,7 @@
 # class String_op:
 #     def __init__(self): self.s = str
 #     def get_str(self): self.s = input("Enter a string ")
-#     def put_str(self): print(self.s)
+#     def put_str(self): print(self.s.upper())
 # str_obj = String_op()
 # str_obj.get_str()
 # str_obj.put_str()
@@ -51,6 +51,46 @@
 # Then, the output should be:
 # bag,hello,without,world
 
-x = input().split(",")
-x.sort()
-print(",".join([i for i in x]))
+# x = input().split(",")
+# x.sort()
+# print(",".join([i for i in x]))
+
+# Write a program that accepts sequence of lines as input and prints the lines after making all characters in the sentence capitalized.
+# Suppose the following input is supplied to the program:
+# Hello world
+# Practice makes perfect
+# Then, the output should be:
+# HELLO WORLD
+# PRACTICE MAKES PERFECT
+
+# x = []
+# while True:
+#     z = input()
+#     if z == "": break
+#     x.append(z.upper())
+# for i in x: print(i)
+
+# Write a program that accepts a sequence of whitespace separated words as input and prints the words after removing all duplicate words and sorting them alphanumerically.
+# Suppose the following input is supplied to the program:
+# hello world and practice makes perfect and hello world again
+# Then, the output should be:
+# again and hello makes perfect practice world
+
+# x = set(input().split())
+# print(" ".join(sorted(x)))
+
+# Write a program which accepts a sequence of comma separated 4 digit binary numbers as its input and then check whether they are divisible by 5 or not. The numbers that are divisible by 5 are to be printed in a comma separated sequence.
+# Example:
+# 0100,0011,1010,1001
+
+# x = input().split(",")
+# print(",".join([i for i in x if int(i,2)%5==0]))
+
+# Write a program, which will find all such numbers between 1000 and 3000 (both included) such that each digit of the number is an even number.
+# The numbers obtained should be printed in a comma-separated sequence on a single line.
+
+# nums=[]
+# for i in range(1000,3000):
+#     if [j for j in str(i) if int(j)%2!=0]: continue
+#     nums.append(str(i))
+# print(",".join(nums))
