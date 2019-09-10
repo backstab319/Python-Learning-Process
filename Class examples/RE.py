@@ -23,9 +23,20 @@ import re
 #     for match in matcher:
 #         print(match.start(),match.group())
 
-inp = ["a","a+","[a*]","a?","a{1}","a{1,3}","[^a]","^a","a$"]
-for i in inp:
-    print("For expression",i)
-    matcher = re.finditer(i,"ABb @9hz* a K")
-    for match in matcher:
-        print(match.start(),match.group())
+# inp = ["a","a+","[a*]","a?","a{1}","a{1,3}","[^a]","^a","a$"]
+# for i in inp:
+#     print("For expression",i)
+#     matcher = re.finditer(i,"ABb @9hz* a K")
+#     for match in matcher:
+#         print(match.start(),match.group())
+
+inp,data = input(),"abcdef"
+#match
+# match = re.match(inp,data)
+# match = re.fullmatch(inp,data)
+# match = re.search(inp,data)
+match = re.findall(inp,)
+if match:
+    print(match.start(),match.group())
+else:
+    print("No matches.")

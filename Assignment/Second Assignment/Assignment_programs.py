@@ -34,7 +34,7 @@ class Assignment2:
         while True:
             self.clrscr()
             x = input(
-                "1.Print my name\n2.Print lyrics of my favorite song\n3.Print numbers\n4.Summation of 64 and 32\n5.Summation of x and y\n6.Favourite actor name\n7.Print lucky inside var s\n8.Print date\n0.To exit\n"
+                "1.Print my name\n2.Print lyrics of my favorite song\n3.Print numbers\n4.Summation of 64 and 32\n5.Summation of x and y\n6.Favourite actor name\n7.Print lucky inside var s\n8.Print date\n9.String replace\n00.Next set of programs\n0.To exit\n"
             )
             if x == "1": self.pr_name()
             elif x == "2": self.pr_lyric()
@@ -64,6 +64,10 @@ class Assignment2:
                 self.clrscr()
                 print("Today's date is",date.today())
                 self.pause()
+            elif x == "9":
+                self.str_replace()
+            elif x == "00":
+                self.next_main()
             elif x == "0":
                 self.clrscr()
                 self.pauser(1)
@@ -71,6 +75,37 @@ class Assignment2:
             else:
                 print("Invalid Input!")
                 self.pause()
+
+    def str_replace(self):
+        self.clrscr()
+        a,b,c = input("Enter a string "),input("Enter string to be replaced "),input("Enter the replacing string ")
+        print(a.replace(b,c))
+        self.pause()
+
+    def next_main(self):
+        self.clrscr()
+        x,rec = input("1.String find\n2.String find case sensitive\n0.Go back\n"),1
+        if x == "1":
+            self.str_find()
+        elif x == "2":
+            self.str_case_sens()
+        elif x == "0": rec = 0
+        else: print("Incorrect input!")
+        self.next_main() if rec == 1 else 0
+
+    def str_find(self):
+        self.clrscr()
+        x,y = input("Please enter a string "),input("Please enter a string to be found ")
+        if x.find(y) != -1: print("The element is present in the target string")
+        else: print("Element not present")
+        self.pause()
+
+    def str_case_sens(self):
+        self.clrscr()
+        x = input("Please enter a string ")
+        if x == x.capitalize(): print("The given string is case sensitive")
+        else: print("The string is not case sensitive")
+        self.pause()
 
 curse = Assignment2()
 curse.main_exec()
