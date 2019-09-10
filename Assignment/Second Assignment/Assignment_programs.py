@@ -1,5 +1,7 @@
 from os import system, name
 from time import ctime, sleep
+from datetime import date
+import random
 class Assignment2:
     def clrscr(self): system("cls") if name == "nt" else system("clear")
     def pauser(self,sec): sleep(sec)
@@ -32,10 +34,36 @@ class Assignment2:
         while True:
             self.clrscr()
             x = input(
-                "1.Print my name\n2.Print lyrics of my favorite song\n0.To exit\n"
+                "1.Print my name\n2.Print lyrics of my favorite song\n3.Print numbers\n4.Summation of 64 and 32\n5.Summation of x and y\n6.Favourite actor name\n7.Print lucky inside var s\n8.Print date\n0.To exit\n"
             )
             if x == "1": self.pr_name()
             elif x == "2": self.pr_lyric()
+            elif x == "3":
+                self.clrscr()
+                for i in range(1,10): print(random.randint(1,100))
+                self.pause()
+            elif x == "4":
+                self.clrscr()
+                print("64 + 32 =",eval("64+32"))
+                self.pause()
+            elif x == "5":
+                self.clrscr()
+                x,y = input("Enter value of x "),input("Enter value of y ")
+                print(x+" + "+y+" =",int(x)+int(y))
+                self.pause()
+            elif x == "6":
+                self.clrscr()
+                print("My favourite actor's name is ")
+                self.pause()
+            elif x == "7":
+                self.clrscr()
+                s = "lucky"
+                print(s,type(s))
+                self.pause()
+            elif x == "8":
+                self.clrscr()
+                print("Today's date is",date.today())
+                self.pause()
             elif x == "0":
                 self.clrscr()
                 self.pauser(1)
