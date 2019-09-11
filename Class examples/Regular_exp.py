@@ -30,13 +30,16 @@ import re
 #     for match in matcher:
 #         print(match.start(),match.group())
 
-inp,data = input(),"abcdef"
-#match
-# match = re.match(inp,data)
-# match = re.fullmatch(inp,data)
-# match = re.search(inp,data)
-match = re.findall(inp,)
-if match:
-    print(match.start(),match.group())
-else:
-    print("No matches.")
+# inp,data = input(),"abcdef"
+# #match
+# # match = re.match(inp,data)
+# # match = re.fullmatch(inp,data)
+# # match = re.search(inp,data)
+# match = re.findall(inp,)
+# if match:
+#     print(match.start(),match.group())
+# else:
+#     print("No matches.")
+
+x = re.sub("\\d","@","123sid")
+print(x)
