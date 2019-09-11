@@ -223,3 +223,4 @@ class Assignment2:
 
 curse = Assignment2()
 curse.main_exec()
+# Test for ubuntu
