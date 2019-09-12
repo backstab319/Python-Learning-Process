@@ -172,7 +172,7 @@ class Assignment2:
 
     def next_main_1(self):
         self.clrscr()
-        x,rec = input("1.To input phone number\n2.To enter preffered programming language\n3.Number between rnage\n4.Input password\n5.List countries in the set\n6.Count from 0 to 100\n7.Multiplication table\n8.Print 1 to 10 backwards\n9.Even numbers till 10\n0.Go back\n"),0
+        x,rec = input("1.To input phone number\n2.To enter preffered programming language\n3.Number between rnage\n4.Input password\n5.List countries in the set\n6.Count from 0 to 100\n7.Multiplication table\n8.Print 1 to 10 backwards\n9.Even numbers till 10\n00.Next set of programs\n0.Go back\n"),0
         if x == "1": self.input_methods("phone")
         elif x == "2": self.input_methods("lang")
         elif x == "3":
@@ -208,6 +208,7 @@ class Assignment2:
             print(len([i for i in range(1,11) if i%2 == 0]))
             self.pause()
         elif x == "0": rec = 1
+        elif x == "00": self.next_main_2()
         else:
             print("Invalid Input!")
             self.pause()
@@ -220,6 +221,32 @@ class Assignment2:
         self.clrscr()
         print("Your phone number is",inp) if switch == "phone" else print("Your preffered language is",inp)
         self.pause()
+
+    def sum_nums(self,x,y,sum):
+        self.clrscr()
+        for i in range(x,y): sum+=i
+        print("The sum of numbers from",x,",",y,"is",sum)
+        self.pause()
+
+    def next_main_2(self):
+        self.clrscr()
+        x,rec = input("1.Sum of numbers from 100 to 200\n2.Country name using while loop\n3.Function to sum list\n0.Go back\n"),1
+        if x == "1": self.sum_nums(100,200,0)
+        elif x == "2":
+            self.clrscr()
+            countries,count = ["Canada","USA","Mexico"],0
+            while count < len(countries):
+                print(countries[count])
+                count+=1
+            self.pause()
+        elif x == "3":
+            print("Under construction.")
+            self.pause()
+        elif x == "0": return
+        else:
+            print("Invalid Input!")
+            self.pause()
+        if rec == 1: self.next_main_2()
 
 curse = Assignment2()
 curse.main_exec()
