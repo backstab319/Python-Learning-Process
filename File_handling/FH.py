@@ -39,8 +39,8 @@
 # f.close()
 
 # Copying
-f1 = open("test/test.text")
-f2 = open("test/copy.text","w")
-f2.write(f1.read())
-f1.close()
-f2.close()
+# f1 = open("test/test.text")
+# f2 = open("test/copy.text","w")
+# f2.write(f1.read())
+# f1.close()
+# f2.close()
